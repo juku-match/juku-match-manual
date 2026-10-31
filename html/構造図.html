@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<style>
+@page {
+    size: A4 landscape;
+    margin: 10mm 12mm;
+    background-color: #f8fafc;
+}
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Meiryo", sans-serif;
+    color: #1e293b;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 14px;
+}
+.header h1 {
+    font-size: 18pt;
+    margin: 0 0 4px 0;
+    color: #0f172a;
+    font-weight: 700;
+}
+.header p {
+    font-size: 9pt;
+    color: #64748b;
+    margin: 0;
+}
+
+.diagram-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 6px;
+}
+
+.diagram-table td {
+    vertical-align: top;
+    text-align: center;
+    padding: 0 6px;
+}
+
+/* Company Node */
+.company-box {
+    background: #1e40af;
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 8px;
+    display: inline-block;
+    width: 260px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+.company-title {
+    font-size: 13pt;
+    font-weight: bold;
+}
+.company-subtitle {
+    font-size: 8.5pt;
+    color: #93c5fd;
+    margin-top: 2px;
+}
+
+/* Connectors */
+.connector-line-v {
+    width: 2px;
+    height: 14px;
+    background-color: #94a3b8;
+    margin: 0 auto;
+}
+
+.connector-tree {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 auto;
+}
+.connector-tree td {
+    padding: 0;
+    height: 10px;
+}
+.line-top {
+    border-top: 2px solid #94a3b8;
+}
+.line-left {
+    border-left: 2px solid #94a3b8;
+}
+.line-right {
+    border-right: 2px solid #94a3b8;
+}
+
+/* Recruiter Cards */
+.recruiter-card {
+    background: #ffffff;
+    border: 2px solid #3b82f6;
+    border-radius: 8px;
+    padding: 8px 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    position: relative;
+}
+.recruiter-card.manager {
+    border: 2px solid #d97706;
+    background: #fffbeb;
+}
+.manager-badge {
+    background-color: #d97706;
+    color: #ffffff;
+    font-size: 7.5pt;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-bottom: 4px;
+    display: inline-block;
+}
+.recruiter-header {
+    font-size: 10.5pt;
+    font-weight: bold;
+    color: #1e3a8a;
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 3px;
+    margin-bottom: 4px;
+}
+.recruiter-card.manager .recruiter-header {
+    color: #92400e;
+    border-bottom-color: #fde68a;
+}
+.recruiter-badge {
+    display: inline-block;
+    background-color: #eff6ff;
+    color: #2563eb;
+    font-size: 8pt;
+    font-weight: 600;
+    padding: 2px 6px;
+    border-radius: 10px;
+}
+.recruiter-card.manager .recruiter-badge {
+    background-color: #fef3c7;
+    color: #b45309;
+}
+
+/* School Cards */
+.school-card {
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-top: 3.5px solid #0284c7;
+    border-radius: 6px;
+    padding: 8px;
+    margin-bottom: 8px;
+    text-align: left;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+.school-name {
+    font-size: 10pt;
+    font-weight: bold;
+    color: #0f172a;
+    margin-bottom: 3px;
+}
+.school-recruiter-tag {
+    font-size: 7.5pt;
+    color: #475569;
+    background: #f1f5f9;
+    padding: 2px 5px;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+/* Jobs Section */
+.job-list {
+    background: #ffffff;
+    border: 1px dashed #cbd5e1;
+    border-radius: 6px;
+    padding: 6px 8px;
+    text-align: left;
+}
+.job-title-head {
+    font-size: 8pt;
+    font-weight: bold;
+    color: #64748b;
+    margin-bottom: 3px;
+    text-transform: uppercase;
+}
+.job-item {
+    font-size: 8.5pt;
+    color: #334155;
+    padding: 2px 0;
+    border-bottom: 1px solid #f1f5f9;
+}
+.job-item:last-child {
+    border-bottom: none;
+}
+.job-item::before {
+    content: "• ";
+    color: #0284c7;
+    font-weight: bold;
+}
+
+.rule-box {
+    margin-top: 14px;
+    background-color: #ffffff;
+    border-left: 4px solid #d97706;
+    padding: 8px 12px;
+    border-radius: 0 6px 6px 0;
+    font-size: 8.5pt;
+    color: #334155;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+.rule-box strong {
+    color: #b45309;
+}
+.rule-box ul {
+    margin: 4px 0 0 0;
+    padding-left: 18px;
+}
+.rule-box li {
+    margin-bottom: 2px;
+}
+</style>
+</head>
+<body>
+
+<div class="header" style="margin-top: 8px;">
+    <h1>会社・マネージャー・採用担当者・校舎・求人 構造図</h1>
+    <p>複数マネージャー対応および各校舎における求人管理の構成図</p>
+</div>
+
+<!-- Level 1: Company -->
+<div style="text-align: center;">
+    <div class="company-box">
+        <div class="company-title">会社</div>
+        <div class="company-subtitle">Company</div>
+    </div>
+</div>
+
+<div class="connector-line-v"></div>
+
+<!-- Connector to Recruiters -->
+<table class="connector-tree">
+    <tr>
+        <td style="width: 25%;"></td>
+        <td class="line-top line-left" style="width: 25%;"></td>
+        <td class="line-top line-right" style="width: 25%;"></td>
+        <td style="width: 25%;"></td>
+    </tr>
+</table>
+
+<!-- Level 2: Recruiters & Assigned Schools -->
+<table class="diagram-table">
+    <tr>
+        <!-- Recruiter A (Manager) Group -->
+        <td style="width: 25%;">
+            <div class="recruiter-card manager">
+                <div><span class="manager-badge">★ 全体管理マネージャー</span></div>
+                <div class="recruiter-header">採用担当者 A</div>
+                <span class="recruiter-badge">担当：会社全体統括 + 校舎1, 校舎2（兼任）</span>
+            </div>
+            
+            <div class="connector-line-v" style="height: 8px;"></div>
+            
+            <table class="connector-tree">
+                <tr>
+                    <td style="width: 25%;"></td>
+                    <td class="line-top line-left" style="width: 25%;"></td>
+                    <td class="line-top line-right" style="width: 25%;"></td>
+                    <td style="width: 25%;"></td>
+                </tr>
+            </table>
+
+            <table class="diagram-table">
+                <tr>
+                    <td style="width: 50%;">
+                        <div class="school-card">
+                            <div class="school-name">校舎 1</div>
+                            <div class="school-recruiter-tag">担当：採用担当者 A</div>
+                        </div>
+                        <div class="job-list">
+                            <div class="job-title-head">募集求人</div>
+                            <div class="job-item">英語講師 (非常勤)</div>
+                            <div class="job-item">受付・事務スタッフ</div>
+                        </div>
+                    </td>
+                    <td style="width: 50%;">
+                        <div class="school-card">
+                            <div class="school-name">校舎 2</div>
+                            <div class="school-recruiter-tag">担当：採用担当者 A</div>
+                        </div>
+                        <div class="job-list">
+                            <div class="job-title-head">募集求人</div>
+                            <div class="job-item">数学講師 (常勤)</div>
+                            <div class="job-item">教室長候補</div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </td>
+
+        <!-- Recruiter B (Manager) Group -->
+        <td style="width: 25%;">
+            <div class="recruiter-card manager">
+                <div><span class="manager-badge">★ 全体管理マネージャー</span></div>
+                <div class="recruiter-header">採用担当者 B</div>
+                <span class="recruiter-badge">担当：会社全体統括 + 請求担当 + 校舎3</span>
+            </div>
+
+            <div class="connector-line-v" style="height: 8px;"></div>
+
+            <table class="diagram-table" style="width: 60%; margin: 0 auto;">
+                <tr>
+                    <td>
+                        <div class="school-card">
+                            <div class="school-name">校舎 3</div>
+                            <div class="school-recruiter-tag">担当：採用担当者 B</div>
+                        </div>
+                        <div class="job-list">
+                            <div class="job-title-head">募集求人</div>
+                            <div class="job-item">国語講師 (非常勤)</div>
+                            <div class="job-item">理科講師 (非常勤)</div>
+                            <div class="job-item">採点スタッフ</div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </td>
+        <!-- Recruiter C Group -->
+        <td style="width: 25%;">
+            <div class="recruiter-card">
+                <div class="recruiter-header">採用担当者 C</div>
+                <span class="recruiter-badge">担当：校舎4</span>
+            </div>
+
+            <div class="connector-line-v" style="height: 8px;"></div>
+
+            <table class="diagram-table" style="width: 60%; margin: 0 auto;">
+                <tr>
+                    <td>
+                        <div class="school-card">
+                            <div class="school-name">校舎 4</div>
+                            <div class="school-recruiter-tag">担当：採用担当者 C</div>
+                        </div>
+                        <div class="job-list">
+                            <div class="job-title-head">募集求人</div>
+                            <div class="job-item">英語講師 (常勤)</div>
+                            <div class="job-item">理科講師 (非常勤)</div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </td>
+        <!-- Recruiter D Group -->
+        <td style="width: 25%;">
+            <div class="recruiter-card">
+                <div class="recruiter-header">採用担当者 D</div>
+                <span class="recruiter-badge">担当：校舎5</span>
+            </div>
+
+            <div class="connector-line-v" style="height: 8px;"></div>
+
+            <table class="diagram-table" style="width: 60%; margin: 0 auto;">
+                <tr>
+                    <td>
+                        <div class="school-card">
+                            <div class="school-name">校舎 5</div>
+                            <div class="school-recruiter-tag">担当：採用担当者 D</div>
+                        </div>
+                        <div class="job-list">
+                            <div class="job-title-head">募集求人</div>
+                            <div class="job-item">国語講師 (非常勤)</div>
+                            <div class="job-item">社会講師 (非常勤)</div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
+<div class="rule-box">
+    <strong>構造のポイント：</strong>
+    <ul>
+        <li><strong>マネージャー役割：</strong> 採用担当者のうち <strong>複数名</strong> が「会社全体を管理するマネージャー」権限を保有可能。</li>
+        <li><strong>業務の兼務：</strong> マネージャーであっても通常通り校舎の担当（校舎1, 校舎2など）を兼任可能。</li>
+        <li><strong>単一制約（校舎）：</strong> 各校舎に配置される採用担当者は変わらず <strong>1名のみ</strong>（複数人の重複割り当て不可）。</li>
+    </ul>
+</div>
+
+</body>
+</html>
